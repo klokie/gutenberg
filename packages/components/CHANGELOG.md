@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Breaking Change
+
+-   The experimental `Text` component has been completely re-written and enhanced with truncation support and separate variant, size, and weight props to allow for greater control. The previous `variant` prop has been completely removed.
+
 ## 13.0.0 (2021-03-17)
 
 ### Breaking Change
