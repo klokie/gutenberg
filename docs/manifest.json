@@ -1128,6 +1128,12 @@
 		"parent": "components"
 	},
 	{
+		"title": "Truncate",
+		"slug": "truncate",
+		"markdown_source": "../packages/components/src/truncate/README.md",
+		"parent": "components"
+	},
+	{
 		"title": "UnitControl",
 		"slug": "unit-control",
 		"markdown_source": "../packages/components/src/unit-control/README.md",
