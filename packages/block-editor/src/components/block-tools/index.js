@@ -39,6 +39,8 @@ export default function BlockTools( { children } ) {
 			{ /* Used for the inline rich text toolbar. */ }
 			<Popover.Slot name="block-toolbar" />
 			{ children }
+			{ /* Forward compatibility: a place to render block tools behind the
+                 content so it can be tabbed to properly. */ }
 		</InsertionPoint>
 	);
 }

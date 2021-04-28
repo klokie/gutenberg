@@ -19,8 +19,9 @@ import { useInBetweenInserter } from './use-in-between-inserter';
 import { store as blockEditorStore } from '../../store';
 import { usePreParsePatterns } from '../../utils/pre-parse-patterns';
 import { LayoutProvider, defaultLayout } from './layout';
+import BlockToolsBackCompat from '../block-tools/back-compat';
 
-export default function BlockList( { className, __experimentalLayout } ) {
+function Root( { className, children } ) {
 	const isLargeViewport = useViewportMatch( 'medium' );
 	const {
 		isTyping,
@@ -41,7 +42,6 @@ export default function BlockList( { className, __experimentalLayout } ) {
 			isNavigationMode: _isNavigationMode(),
 		};
 	}, [] );
-	usePreParsePatterns();
 	return (
 		<div
 			ref={ useMergeRefs( [
@@ -59,8 +59,19 @@ export default function BlockList( { className, __experimentalLayout } ) {
 				}
 			) }
 		>
-			<BlockListItems __experimentalLayout={ __experimentalLayout } />
+			{ children }
 		</div>
+	);
+}
+
+export default function BlockList( { className, __experimentalLayout } ) {
+	usePreParsePatterns();
+	return (
+		<BlockToolsBackCompat>
+			<Root className={ className }>
+				<BlockListItems __experimentalLayout={ __experimentalLayout } />
+			</Root>
+		</BlockToolsBackCompat>
 	);
 }
 

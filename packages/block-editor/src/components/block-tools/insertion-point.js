@@ -24,9 +24,9 @@ import Inserter from '../inserter';
 import { store as blockEditorStore } from '../../store';
 import { __unstableUseBlockElement as useBlockElement } from '../block-list/use-block-props/use-block-refs';
 
-export const InsertionPointOpenRef = createContext( {} );
+export const InsertionPointOpenRef = createContext();
 
-function InsertionPointPopover() {
+function InsertionPointPopover( { __unstablePopoverSlot } ) {
 	const { selectBlock } = useDispatch( blockEditorStore );
 	const openRef = useContext( InsertionPointOpenRef );
 	const ref = useRef();
@@ -210,7 +210,9 @@ function InsertionPointPopover() {
 			getAnchorRect={ getAnchorRect }
 			focusOnMount={ false }
 			className="block-editor-block-list__insertion-point-popover"
-			__unstableSlotName={ null }
+			// Render in the old slot if needed for backward compatibility,
+			// otherwise render in place (not in the the default popover slot).
+			__unstableSlotName={ __unstablePopoverSlot || null }
 		>
 			<div
 				ref={ ref }
